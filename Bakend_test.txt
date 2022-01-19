@@ -1,0 +1,17 @@
+1. Configure and write swagger documentation for the apis.
+2. Role based access for APIs:
+	->  Create DB schema to store user roles, one user can have multiple roles. (example roles: ADMIN, USER)
+	->  Store the user roles in auth token
+	->  write the below apis with role based access
+		ADMIN APIS (APIs should only be accessed by users who have role as ADMIN):
+			a) GET /admin/users  
+				This API should return all the users present in the database.
+			b) POST /admin/user/role/add 
+					Accept userId, role in the request body and add it to the user.
+		USER APIS (Accessible by users and admins):
+			a) GET /user return the user details basedon the userId present in the auth token.
+			b) for above api add query parameter userId=<value> and this query parameter should be valid only for admin users.
+				If authenticated user is admin and query parameter userId=<value> is not None then return the user details of the specified userId. Otherwise return the authenticated user details.
+3. Add payload,query params sanitization (Security checks) for all APIs.
+4. Write Unit test for the apis.
+5. Write query to fetch users count for each role.
